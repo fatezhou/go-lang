@@ -1,0 +1,25 @@
+﻿syntax = "proto3"; 
+package pbTest;
+
+// 通用消息回应
+message RespComm {
+    int32 errcode =1 ;
+    string msg = 2;  // 错误信息
+}
+
+// 0x1000心跳
+message ReqHeartbeat {
+    int64 timestamp = 1; // 客户端时间戳
+}
+
+// 0x1001
+message RespHeartbeat {
+    int32 errcode = 1;
+    string msg =2; 
+    int64 timestamp = 3; // 服务器的时间戳
+	tagTest t = 4;
+}
+
+message tagTest{
+
+}
