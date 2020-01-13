@@ -99,6 +99,7 @@ func (t *test)Run(){
 }
 
 func (t *test)Print(){
+	fmt.Printf("\n\n\n\n\n--------run over start print result!------\n")
 	Succ := int(0)
 	Fail := int(0)
 	SumWait := int(0)
@@ -110,6 +111,7 @@ func (t *test)Print(){
 		}else{
 			Fail++
 		}
+		fmt.Printf("[%+v]\n", ptr)
 		return true
 	})
 
