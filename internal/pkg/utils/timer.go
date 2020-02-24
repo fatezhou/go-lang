@@ -9,7 +9,7 @@ type TimerCallbackFunc func (deskId, playerId int32, extData interface{})
 
 type TimerInfo struct{
 	Data interface{}
-	Duration int32
+	Duration int64
 	NextAwakeTimestamp int64
 	TimerId int32
 	TimerId2 int32
@@ -68,7 +68,7 @@ func (t *Timer)GetMs()int64{
 func (t *Timer)SetTimer(id1 int32, id2 int32, duration int32, timerProc func (deskId, playerId int32, extData interface{}), extData interface{}){
 	timerInfo := &TimerInfo{
 		Data: extData,
-		Duration: duration,
+		Duration: int64(duration),
 		NextAwakeTimestamp: t.GetMs() + int64(duration),
 		TimerId: id1,
 		TimerId2: id2,
@@ -96,7 +96,7 @@ func (t *Timer)Loop(){
 					//fmt.Printf("s:%d, %+v\n", second, timerInfo)
 					if timerInfo.NextAwakeTimestamp <= ms{
 						//触发定时
-						timerInfo.NextAwakeTimestamp += int64(timerInfo.Duration)
+						timerInfo.NextAwakeTimestamp += timerInfo.Duration
 						t.callbackChan <- timerInfo
 					}
 					return true
