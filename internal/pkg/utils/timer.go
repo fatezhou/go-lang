@@ -23,6 +23,7 @@ type Timer struct {
 	seq uint64
 	callbackChan chan *TimerInfo
 	lock sync.Mutex
+	timeoutMs int64
 }
 
 func (t *Timer)GetSeq() uint64{
@@ -33,7 +34,7 @@ func (t *Timer)GetSeq() uint64{
 	return t.seq
 }
 
-func (t *Timer)Init(interval int32){
+func (t *Timer)Init(interval int32, timeoutMs int64){
 	if t.init{
 		return
 	}
@@ -45,8 +46,17 @@ func (t *Timer)Init(interval int32){
 	t.init = true
 	t.seq = 0
 	t.callbackChan = make(chan *TimerInfo, 0xFFFF)
+	if timeoutMs <= int64(interval){
+		t.SetTimeout(0xefffffffffffffff)
+	}else{
+		t.SetTimeout(timeoutMs)
+	}
 	go t.Callback()
 	go t.Loop()
+}
+
+func (t *Timer)SetTimeout(timeoutMs int64){
+	t.timeoutMs = timeoutMs
 }
 
 func (t *Timer)KillTimer(id1 int32, id2 int32){
@@ -102,6 +112,11 @@ func (t *Timer)Loop(){
 					return true
 				})
 			}
+		/*
+		case <-time.After(time.Duration(t.timeoutMs)):{
+			fmt.Printf("ticker timeout do something")
+			}
+		*/
 		}
 	}
 }
