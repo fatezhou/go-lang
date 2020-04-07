@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/fatezhou/go-lang/internal/pkg/http"
+	"github.com/fatezhou/go-lang/internal/pkg/utils"
 	"sync"
 	"time"
-	"zoyee-tool/internal/pkg/utils"
-	http "zoyee-tool/internal/pkg/http"
 )
 
 type test struct{

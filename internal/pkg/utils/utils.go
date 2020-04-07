@@ -9,7 +9,6 @@ import (
 	"os"
 	"strings"
 	"time"
-	"zoyee-tool/internal/pkg/conv"
 )
 
 func GetCurrTime() int64 {
@@ -30,7 +29,7 @@ func Now() int64 {
 func Today() int32 {
 	now := time.Now()
 	str := fmt.Sprintf("%04d%02d%02d", now.Year(), now.Month(), now.Day())
-	return conv.Str2Int32(str)
+	return Str2Int32(str)
 }
 
 func NowTimeString() string{

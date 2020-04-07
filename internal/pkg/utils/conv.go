@@ -32,3 +32,7 @@ func Str2Int64(number string)int64{
 	n, _ := strconv.ParseInt(number, 10, 64)
 	return n
 }
+
+func Float64ToStrring(num float64) string{
+	return  strconv.FormatFloat(num ,'E',-1,64)
+}

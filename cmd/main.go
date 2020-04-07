@@ -3,14 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/fatezhou/go-lang/internal/pkg/timeEx"
+	"github.com/fatezhou/go-lang/internal/pkg/utils"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
 	"sync"
 	"time"
-	"github.com/fatezhou/go-lang/internal/pkg/timeEx"
-	"github.com/fatezhou/go-lang/internal/pkg/utils"
 )
 
 var BuildTime = ""
