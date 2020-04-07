@@ -4,8 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/fatezhou/go-lang/internal/pkg/http"
-	"github.com/fatezhou/go-lang/internal/pkg/utils"
+	"github.com/fatezhou/go-lang"
 	"sync"
 	"time"
 )
@@ -47,7 +46,7 @@ func (t *test)OneDo(user string, usr *user){
 	//t.wg.Done()
 	urlQ := "https://" + t.Url + ".youyueworld.com/apis/queue"
 	urlU := "https://" + t.Url + ".youyueworld.com/apis/update_queue_time_by_token"
- 	c := http.HttpClient{}
+ 	c := zoyee_go_lang.HttpClient{}
 	str := fmt.Sprintf(`{"token":"%s"}`, usr.UserId)
 	usr.EnterTime = time.Now().Unix()
 	resp := c.Post(urlQ, str, nil)
@@ -80,10 +79,10 @@ func (t *test)OneDo(user string, usr *user){
 func (t *test)Run(){
 	t.userData = &sync.Map{}
 	t.wg = &sync.WaitGroup{}
-	rand := utils.Rand{}
+	rand := zoyee_go_lang.Rand{}
 	t.wg.Add(t.UserCount)
 	for i := 0; i < t.UserCount; i++{
-		strUser := string(rand.RandString(32, utils.KC_RAND_KIND_ALL))
+		strUser := string(rand.RandString(32, zoyee_go_lang.KC_RAND_KIND_ALL))
 		fmt.Printf("%s\n", strUser)
 		usr := &user{
 			UserId: strUser,

@@ -3,8 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/fatezhou/go-lang/internal/pkg/timeEx"
-	"github.com/fatezhou/go-lang/internal/pkg/utils"
+	"github.com/fatezhou/go-lang"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -68,7 +67,7 @@ func httpGet(){
 
 func main(){
 	//str := os.Getenv("DBA_LOG_URL")
-	fmt.Print(timeEx.Today(), "  ", timeEx.YearDay(), " ", utils.Int322Str(123456789), "  ", utils.Str2Int64("1234567890123456789"))
+	fmt.Print(zoyee_go_lang.Today(), "  ", zoyee_go_lang.YearDay(), " ", zoyee_go_lang.Int322Str(123456789), "  ", zoyee_go_lang.Str2Int64("1234567890123456789"))
 	//httpGet()
 
 }

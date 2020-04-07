@@ -2,9 +2,9 @@ package timer
 
 import (
 	"fmt"
+	"github.com/fatezhou/go-lang"
 	"sync"
 	"time"
-	"github.com/fatezhou/go-lang/internal/pkg/logs"
 )
 
 type TimerInfo struct{
@@ -34,7 +34,7 @@ func init(){
 
 func SetTimer(deskId int32, timerId int32, duration int32, timerProc func(deskId int32, timerId int32, extData interface{}), extData interface{}){
 	strTimeId := fmt.Sprintf("%d_%d", deskId, timerId)
-	logs.Info("TimeId:%s" ,strTimeId)
+	zoyee_go_lang.Info("TimeId:%s" ,strTimeId)
 	if v, ok := timerMap.Map.Load(strTimeId); ok{
 		if t ,ok := v.(*TimerInfo) ;ok {
 			t.stop()
@@ -76,7 +76,7 @@ func KillTimer(deskId int32, timerId int32){
 			timer.stopChan<-1
 			timerMap.Map.Delete(strTimeId)
 		}else{
-			logs.Infof("can not find timer, kill fail, deskId:[%d], timerId:[%d]", deskId, timerId)
+			zoyee_go_lang.Infof("can not find timer, kill fail, deskId:[%d], timerId:[%d]", deskId, timerId)
 		}
 	}()
 }

@@ -1,6 +1,8 @@
 package utils
 
-var t = Timer{}
+import "github.com/fatezhou/go-lang"
+
+var t = zoyee_go_lang.Timer{}
 
 func init(){
 	t.Init(500, 0)

@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"github.com/fatezhou/go-lang"
 	"io/ioutil"
 	"math/rand"
 	"net"
@@ -29,7 +30,7 @@ func Now() int64 {
 func Today() int32 {
 	now := time.Now()
 	str := fmt.Sprintf("%04d%02d%02d", now.Year(), now.Month(), now.Day())
-	return Str2Int32(str)
+	return zoyee_go_lang.Str2Int32(str)
 }
 
 func NowTimeString() string{
