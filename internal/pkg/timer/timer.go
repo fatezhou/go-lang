@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 	"time"
-	"zoyee-tool/internal/pkg/logs"
+	"github.com/fatezhou/go-lang/internal/pkg/logs"
 )
 
 type TimerInfo struct{

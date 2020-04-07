@@ -75,9 +75,19 @@ func (e *EventListener)Disptch(){
 		data := <-e.eventMQ
 		value, err := e.events.Load(data.eventName)
 		if err != true{
+			e.putEventInfo(data)
 			continue
 		}
 		pfn := value.(func(args ...interface{}))
 		pfn(data.eventParam...)
+		e.putEventInfo(data)
 	}
+}
+
+func Emit(eventName string, args ...interface{}){
+	Event.Emit(eventName, args...)
+}
+
+func On(eventName string, pFn func(args ...interface{})){
+	Event.On(eventName, pFn)
 }

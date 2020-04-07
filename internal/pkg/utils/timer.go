@@ -47,7 +47,7 @@ func (t *Timer)Init(interval int32, timeoutMs int64){
 	t.seq = 0
 	t.callbackChan = make(chan *TimerInfo, 0xFFFF)
 	if timeoutMs <= int64(interval){
-		t.SetTimeout(0xefffffffffffffff)
+		t.SetTimeout(0xefffffffffff)
 	}else{
 		t.SetTimeout(timeoutMs)
 	}
@@ -113,7 +113,7 @@ func (t *Timer)Loop(){
 				})
 			}
 		/*
-		case <-time.After(time.Duration(t.timeoutMs)):{
+		case <-timeEx.After(timeEx.Duration(t.timeoutMs)):{
 			fmt.Printf("ticker timeout do something")
 			}
 		*/

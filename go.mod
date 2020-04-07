@@ -1,4 +1,4 @@
-module zoyee-tool
+module github.com/fatezhou/go-lang
 
 go 1.13
 
