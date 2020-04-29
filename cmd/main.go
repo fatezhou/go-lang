@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/fatezhou/go-lang"
+	"github.com/fatezhou/go-lang/pkg/rpc"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -66,8 +66,5 @@ func httpGet(){
 }
 
 func main(){
-	//str := os.Getenv("DBA_LOG_URL")
-	fmt.Print(zoyee_go_lang.Today(), "  ", zoyee_go_lang.YearDay(), " ", zoyee_go_lang.Int322Str(123456789), "  ", zoyee_go_lang.Str2Int64("1234567890123456789"))
-	//httpGet()
-
+	rpc.InitRPC("0.0.0.0:5090")
 }

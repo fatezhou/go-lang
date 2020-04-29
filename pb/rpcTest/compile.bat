@@ -1,0 +1,1 @@
+protoc --go_out=plugins=grpc:. rpc_test.proto
