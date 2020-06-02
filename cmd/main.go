@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/fatezhou/go-lang/pkg/rpc"
+	"github.com/fatezhou/go-lang/pkg/socket"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -66,5 +66,7 @@ func httpGet(){
 }
 
 func main(){
-	rpc.InitRPC("0.0.0.0:5090")
+	//rpc.InitRPC("0.0.0.0:5090")
+	s := socket.NewSocketServer()
+	s.Listen("0.0.0.0:8879", "tcp")
 }
