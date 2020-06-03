@@ -30,7 +30,7 @@ type SocketConn struct{
 var printer func(format string, a ...interface{})(n int, err error)
 
 func defaultCallback(conn *SocketConn){
-
+	//default callback do nothing
 }
 
 func (s *SocketConn)Send(buffer []byte)(n int, err error){

@@ -18,7 +18,7 @@ type httpsClient struct{
 }
 
 func request(method string, url string, body string, header map[string]string, client *http.Client)string{
-	req, err := http.NewRequest("POST", url, strings.NewReader(body))
+	req, err := http.NewRequest(method, url, strings.NewReader(body))
 	if err != nil{
 		return ""
 	}
@@ -54,14 +54,39 @@ func (hc *httpClient)Post(url, body string, header map[string]string)string{
 	return request("POST", url, body, header, client)
 }
 
+func (hc *httpsClient)Get(url, param string, header map[string]string)string{
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify:true},
+	}
+	client := &http.Client{Transport:tr}
+	return request("GET", url, param, header, client)
+}
+
+func (hc *httpClient)Get(url, param string, header map[string]string)string{
+	client := &http.Client{}
+	return request("GET", url, param, header, client)
+}
+
 func (h *HttpClient)Post(url, body string, header map[string]string)string{
 	if strings.IndexAny(url, "http://") == 0{
 		client := httpClient{}
 		return client.Post(url, body, header)
 	}
-	if strings.IndexAny(url, "http://") == 0{
+	if strings.IndexAny(url, "https://") == 0{
 		client := httpsClient{}
 		return client.Post(url, body, header)
+	}
+	return ""
+}
+
+func (h *HttpClient)Get(url, body string, header map[string]string)string{
+	if strings.IndexAny(url, "http://") == 0{
+		client := httpClient{}
+		return client.Get(url, body, header)
+	}
+	if strings.IndexAny(url, "https://") == 0{
+		client := httpsClient{}
+		return client.Get(url, body, header)
 	}
 	return ""
 }
